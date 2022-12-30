@@ -1,0 +1,21 @@
+
+
+Project Overview:
+
+The overall reality here is that the project is far from complete.  I accept this as I was sick for a month during the
+project development and I was working solo.  I have made great progress and I am happy with the results at the current
+stage.
+
+Here are the things that the project is missing:
+
+There is still no connection to a true database.
+There is no set of unit tests.
+There is no set of integration tests.
+There are numerous ways that the code could be optimized.
+
+There is a work-in-progress Swagger API design that has been started. It covers the concepts of how the API will work.
+It does not cover all API endpoints. It covers only errors relevant to the currently implemented endpoints.
+
+I present these admittedly incomplete results to you as a demonstration of my ability to learn and apply what I have
+learned.  I will continue to work on this project as my personal time allows.  The overall result has taught me a great
+deal about the process of software development and I am very happy with the results.

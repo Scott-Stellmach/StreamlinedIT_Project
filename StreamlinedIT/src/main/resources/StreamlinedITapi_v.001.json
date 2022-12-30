@@ -1,0 +1,252 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "StreamlinedIT",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/objects/ServiceTicket/{ticketDescription}": {
+      "put": {
+        "description": "This is to add a support ticket to the ticket database",
+        "parameters": [
+          {
+            "name": "ticketDescription",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "This is a ticket description"
+            }
+          },
+          {
+            "name": "ticketID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": "0001"
+            }
+          },
+          {
+            "name": "ticketStatus",
+            "in": "query",
+            "required": true,
+            "description": "The current status of the ticket",
+            "schema": {
+              "type": "string",
+              "example": "OPEN"
+            }
+          },
+          {
+            "name": "ticketPriority",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "LOW"
+            }
+          },
+          {
+            "name": "ticketDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Localdatetime"
+            }
+          },
+          {
+            "name": "tickitUserID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "USERID_00123"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceTicket"
+                  },
+                  "example": {
+                    "ticketDescription": "This is the ticket description.",
+                    "ticketID": 31245,
+                    "ticketStatus": "OPEN",
+                    "ticketPriority": "LOW",
+                    "ticketDate": "20220101:0322",
+                    "ticketUserID": "USER_00123"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Inputs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "code": 400,
+                    "message": "Invalid Inputs"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Error"
+                  },
+                  "example": {
+                    "code": 500,
+                    "message": "Server Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/serviceUser": {
+      "get": {
+        "description": "Login to existing userId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "id of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responces": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceUsers"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ServiceTicket": {
+        "type": "object",
+        "properties": {
+          "ticketDescription": {
+            "type": "string"
+          },
+          "ticketID": {
+            "type": "string"
+          },
+          "ticketStatus": {
+            "type": "string"
+          },
+          "ticketPriority": {
+            "type": "string"
+          },
+          "ticketDate": {
+            "type": "string"
+          },
+          "ticketUserID": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceUsers": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "userFirstName": {
+            "type": "string"
+          },
+          "userLastName": {
+            "type": "string"
+          },
+          "userPassword": {
+            "type": "string"
+          },
+          "userEmailAdress": {
+            "type": "string"
+          },
+          "userPhoneNumber": {
+            "type": "string"
+          },
+          "userRole": {
+            "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
